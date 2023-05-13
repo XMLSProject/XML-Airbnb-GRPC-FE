@@ -17,7 +17,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core'
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AddUpdatePriceComponent } from './add-update-price/add-update-price.component'
-import { MatSlideToggleModule} from '@angular/material/slide-toggle'
+import { MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { BookingRequestsComponent } from './booking-requests/booking-requests.component'
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
     {
@@ -43,6 +45,7 @@ const routes: Routes = [
     AcommodationListComponent,
     AddUpdateFreeTerminComponent,
     AddUpdatePriceComponent,
+    BookingRequestsComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ const routes: Routes = [
     MatNativeDateModule,
     MatDatepickerModule,
     MatSlideToggleModule,
+    MatIconModule,
     RouterModule.forChild(routes)
   ],
 })

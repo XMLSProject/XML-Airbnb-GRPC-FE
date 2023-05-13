@@ -1,3 +1,4 @@
+import { BookingRequestsComponent } from './../booking-requests/booking-requests.component';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Acommodation } from '../model/AcommodationModel';
 import {MatTableDataSource} from '@angular/material/table';
@@ -25,7 +26,7 @@ const ELEMENT_DATA: Acommodation[] = [
 })
 export class AcommodationListComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'location', 'minGuests', 'maxGuests', 'addTermin', 'cena'];
+  displayedColumns: string[] = ['name', 'location', 'minGuests', 'maxGuests', 'addTermin', 'cena', 'zahtevi'];
 
   public dataSource = ELEMENT_DATA;
 
@@ -63,6 +64,13 @@ export class AcommodationListComponent implements OnInit {
   public addUpdatePrice(selectedAcommodation: Acommodation): void {
     this.dialog.open(AddUpdatePriceComponent, {
       width: '50%',
+      data: selectedAcommodation
+    });
+  }
+
+  public bookingRequests(selectedAcommodation: Acommodation): void {
+    this.dialog.open(BookingRequestsComponent, {
+      width: '70%',
       data: selectedAcommodation
     });
   }
