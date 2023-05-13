@@ -1,7 +1,7 @@
 <div class="mainDiv">
      
     <div class="tableDiv">
-        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" >
 
             <ng-container matColumnDef="startDate">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
@@ -39,6 +39,14 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+
+        
     </div>
+
+    <div class="toggleDiv">
+        <p class="p1">Manual</p>
+        <mat-slide-toggle class="toggle" [(ngModel)]="isChecked"></mat-slide-toggle>
+        <p class="p2">Automatic</p>
+    </div> 
   
 </div>

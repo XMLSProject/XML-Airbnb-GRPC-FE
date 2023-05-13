@@ -23,7 +23,8 @@ export class BookingRequestsComponent implements OnInit{
 
   displayedColumns: string[] = ['startDate', 'finishDate', 'numberOfGuests', 'approve', 'reject'];
   public dataSource = ELEMENT_DATA;
-
+  public isChecked = false;
+  
   constructor(private _liveAnnouncer: LiveAnnouncer, public dialog: MatDialog) {}
 
   ngOnInit(): void {
