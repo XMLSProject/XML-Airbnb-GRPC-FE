@@ -5,12 +5,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort, Sort } from '@angular/material/sort';
 
 const ELEMENT_DATA: BookingRequest[] = [
-  {id: '1', acommodationName: 'Vila Idila', numberOfGuests: 5, startDate: '22-05-2005', finishDate: '30-04-2023'},
-  {id: '2', acommodationName: 'Vila Varga', numberOfGuests: 4, startDate: '05-05-2005', finishDate: '30-04-2022'},
-  {id: '3', acommodationName: 'Novi Sad 2', numberOfGuests: 2, startDate: '01-01-2005', finishDate: '10-07-2002'},
-  {id: '4', acommodationName: 'Novi Sad 2', numberOfGuests: 100, startDate: '13-06-2019', finishDate: '01-08-2020'},
-  {id: '5', acommodationName: 'BG palata',  numberOfGuests: 25, startDate: '15-05-2022', finishDate: '30-04-2024'},
-  {id: '6', acommodationName: 'BG palata', numberOfGuests: 15, startDate: '31-12-2020', finishDate: '01-04-2022'},
+  {id: '1', acommodationName: 'Vila Idila', numberOfGuests: 5, startDate: '2007-01-15T15:00:00Z', finishDate: '2007-02-02T15:00:00Z'},
+  {id: '2', acommodationName: 'Vila Varga', numberOfGuests: 4, startDate: '2022-03-02T00:00:00Z', finishDate: '2022-03-02T15:00:00Z'},
+  {id: '3', acommodationName: 'Novi Sad 2', numberOfGuests: 2, startDate: '2019-11-01T00:00:00Z', finishDate: '2019-11-03T15:00:00Z'},
+  {id: '4', acommodationName: 'Novi Sad 2', numberOfGuests: 100, startDate: '2018-11-19T00:00:00Z', finishDate: '2018-12-22T15:00:00Z'},
+  {id: '5', acommodationName: 'BG palata',  numberOfGuests: 25, startDate: '2008-06-25T00:00:00Z', finishDate: '2008-06-30T15:00:00Z'},
+  {id: '6', acommodationName: 'BG palata', numberOfGuests: 15, startDate: '2023-05-20T00:00:00Z', finishDate: '2023-05-25T15:00:00Z'},
   
 ];
 
