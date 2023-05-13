@@ -3,12 +3,12 @@
     <div class="inputDiv">
         <mat-form-field class="example-full-width">
             <mat-label >By location  </mat-label>
-                <input type="text" id="dateInput" matInput [(ngModel)]="acommodation.location" >
+                <input type="text" id="locationInput" matInput [(ngModel)]="acommodation.location" >
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label >By number of guests  </mat-label>
-                <input type="number" matInput placeholder="Ex. Paris" [(ngModel)]="acommodation.maxNumGuest" >
+                <input type="number" min="0" matInput [(ngModel)]="acommodation.maxNumGuest" >
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="example-full-width">
