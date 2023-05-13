@@ -3,12 +3,12 @@
     <div class="inputDiv">
         <mat-form-field class="example-full-width">
             <mat-label >By location  </mat-label>
-                <input type="text" id="locationInput" matInput [(ngModel)]="acommodation.location" >
+                <input type="text" id="locationInput" required matInput [(ngModel)]="acommodation.location" >
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label >By number of guests  </mat-label>
-                <input type="number" min="0" matInput [(ngModel)]="acommodation.maxNumGuest" >
+                <input type="number" min="0" required matInput [(ngModel)]="acommodation.maxNumGuest" >
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="example-full-width">
@@ -21,7 +21,7 @@
             <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
 
-        <button class="btn-search" (click)="searchAcommodations()"><mat-icon><span class="material-symbols-outlined">
+        <button class="btn-search" [disabled]="acommodation.location === '' || acommodation.maxNumGuest === 0 " (click)="searchAcommodations()"><mat-icon><span class="material-symbols-outlined">
             search_check
         </span></mat-icon></button>
 
