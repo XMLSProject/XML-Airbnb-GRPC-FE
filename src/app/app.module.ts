@@ -6,10 +6,9 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserModule} from './user/user.module'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from './shared/model/auth.interceptor';
 import { AdminModule } from './admin/admin.module';
-
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterception } from './shared/model/auth.interceptor';
 
 
 
@@ -28,12 +27,14 @@ import { AuthInterception } from './shared/model/auth.interceptor';
     AdminModule,
   ],
   providers: [
-    {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterception,
-    multi: true,
-  }
-],
+     {
+       provide: HTTP_INTERCEPTORS,
+       useClass: TokenInterceptor,
+       multi: true,
+      
+     }
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
