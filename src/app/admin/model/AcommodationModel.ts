@@ -2,10 +2,11 @@ export class Acommodation {
     id : string = '';
     name: string = '';
     location: string = '';
-    photos: string = '';
+    photos: string[] = [];
     minNumGuest: number = 0;
     maxNumGuest: number = 0;
     features: string = ''; 
+    acception: boolean = false;
 
     public constructor(obj?: any) {
         if (obj) {
@@ -15,7 +16,9 @@ export class Acommodation {
             this.photos = obj.photos;
             this.minNumGuest = obj.minNumGuest;
             this.maxNumGuest = obj.maxNumGuest;
-            this.features = obj.features;        }
+            this.features = obj.features;    
+            this.acception = obj.acception;    
+        }
     }
 
 }
