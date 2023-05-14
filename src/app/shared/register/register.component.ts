@@ -3,6 +3,7 @@ import { OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../model/User';
+import { SharedService } from '../service/shared.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { User } from '../model/User';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private sharedService: SharedService) {}
   
   registerForm = new FormGroup({
     name: new FormControl('', [
@@ -29,9 +30,9 @@ export class RegisterComponent {
     email: new FormControl('', [
       Validators.required,Validators.email
     ]),
-    city: new FormControl('', [
-      Validators.required,Validators.pattern('^[A-Z][a-zA-Z0-9 ]+$')
-    ]),
+    // city: new FormControl('', [
+    //   Validators.required,Validators.pattern('^[A-Z][a-zA-Z0-9 ]+$')
+    // ]),
   });
   
   public register(){
@@ -42,9 +43,9 @@ export class RegisterComponent {
       username :"" + this.registerForm?.get('username')?.value,
       password :"" + this.registerForm?.get('password')?.value ,
       email :"" + this.registerForm?.get('email')?.value,
-      city : ""+ this.registerForm?.get('adress')?.value
+      //city : ""+ this.registerForm?.get('adress')?.value
       } 
-      //this.loginRegisterService.register(user)
+      this.sharedService.register(user)
       this.redirectToLogin()
   }
 
