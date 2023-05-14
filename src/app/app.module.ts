@@ -8,10 +8,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserModule} from './user/user.module'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './shared/model/auth.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,6 +23,7 @@ import { TokenInterceptor } from './shared/model/auth.interceptor';
     ReactiveFormsModule,
     UserModule,
     HttpClientModule
+    AdminModule
   ],
   providers: [
      {
