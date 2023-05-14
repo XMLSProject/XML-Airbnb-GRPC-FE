@@ -7,10 +7,11 @@ import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserModule} from './user/user.module'
 import { HttpClientModule } from '@angular/common/http';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     UserModule,
     HttpClientModule
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
