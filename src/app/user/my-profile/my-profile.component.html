@@ -12,6 +12,12 @@
         <label for="surname">Surname:</label>
         <input type="text" id="surname" name="surname" required formControlName="surname" [(ngModel)]="this.Surname">
 
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required formControlName="username" [(ngModel)]="this.Username">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required formControlName="password" [(ngModel)]="this.Password">
+
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required formControlName="email" [(ngModel)]="this.Email">
 
@@ -20,6 +26,7 @@
 
         <div class="button-group">
           <button [disabled]="!registerForm.valid" (click)="save()" type="submit" >Save</button>
+          <button type="button" (click)="deleteAccount()">DELETE YOUR ACCOUNT</button>
           <button type="button" (click)="redirectToLogin()">Cancel</button>
         </div>
       </form>
