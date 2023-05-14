@@ -49,7 +49,7 @@ export class MyProfileComponent {
       username :"",
       password :"",
       email :"" + this.registerForm?.get('email')?.value,
-      city : ""+ this.registerForm?.get('adress')?.value
+      //city : ""+ this.registerForm?.get('adress')?.value
       } 
       //this.loginRegisterService.register(user)
       this.redirectToLogin()

@@ -21,9 +21,6 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required formControlName="email">
 
-        <label for="adress">City:</label>
-        <input type="text" id="adress" name="adress" required formControlName="adress">
-
         <div class="button-group">
           <button [disabled]="!registerForm.valid" (click)="register()" type="submit" >Register</button>
           <button type="button" (click)="redirectToLogin()">Cancel</button>

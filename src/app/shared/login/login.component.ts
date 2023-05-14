@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, EMPTY } from 'rxjs';
 import { LoggedIn } from '../model/logged-in';
+import { SharedService } from '../service/shared.service';
 //import { LoginRegisterService } from '../service/login-register.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { LoggedIn } from '../model/logged-in';
 })
 export class LoginComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private sharedService:SharedService) {}
 
   public Username?: string
   public Password?: string
@@ -29,7 +30,7 @@ export class LoginComponent {
 
   this.lgd.username = "" + this.Username
   this.lgd.password = "" +this.Password
-   //this.loginRegisterService.login(this.lgd)
+  this.sharedService.login(this.lgd)
   }
   updateData() {
     throw new Error('Method not implemented.');
