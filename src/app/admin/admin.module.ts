@@ -20,7 +20,7 @@ import { AddUpdatePriceComponent } from './add-update-price/add-update-price.com
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { BookingRequestsComponent } from './booking-requests/booking-requests.component'
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
+
 
 const routes: Routes = [
     {
@@ -35,7 +35,6 @@ const routes: Routes = [
               component: AcommodationListComponent,
             },
         ],
-        data: {roles:['Admin']}
         
     }]
 
@@ -63,8 +62,8 @@ const routes: Routes = [
     MatNativeDateModule,
     MatDatepickerModule,
     MatSlideToggleModule,
-    HttpClientModule,
     MatIconModule,
+
     RouterModule.forChild(routes)
   ],
 })

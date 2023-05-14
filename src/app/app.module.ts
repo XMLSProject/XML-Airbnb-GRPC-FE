@@ -6,8 +6,12 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserModule} from './user/user.module'
-import { HttpClientModule } from '@angular/common/http';
 import { AdminModule } from './admin/admin.module';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterception } from './shared/model/auth.interceptor';
+
+
 
 @NgModule({
   declarations: [
@@ -20,10 +24,16 @@ import { AdminModule } from './admin/admin.module';
     SharedModule,
     ReactiveFormsModule,
     UserModule,
-    HttpClientModule
-    AdminModule
+    HttpClientModule,
+    AdminModule,
   ],
-  providers: [],
+  providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterception,
+    multi: true,
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
