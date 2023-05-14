@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { LoggedIn } from '../model/logged-in';
 import jwt_decode from 'jwt-decode';
 import { User } from '../model/User';
+import { Acommodation } from '../model/Acommodation';
 
 interface LoginResponse {
   token: string;
@@ -15,15 +16,31 @@ interface LoginResponse {
 
 export class SharedService {
 
+  getToken(): any {
+    return localStorage.getItem("token");
+    // console.log(token + "");
+    // try {
+    //   return jwt_decode(token ? token : "");
+    // } catch(Error) {
+    //   return null;
+    // }
+  }
+
 apiHost: string = "http://localhost:8000/";
-headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': "Bearer " + this.getToken()});
 getDecodedAccessToken(token: string): any {
+  
   try {
     return jwt_decode(token);
   } catch(Error) {
     return null;
   }
 }
+
+
+
+
+
 constructor(private http: HttpClient) { }
 
 
@@ -48,4 +65,5 @@ login(logedin: LoggedIn) {
       console.log(data);
   });
   }
+
 }
