@@ -8,7 +8,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserModule} from './user/user.module'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './shared/model/auth.interceptor';
-import { HttpClientModule } from '@angular/common/http';
 import { AdminModule } from './admin/admin.module';
 
 @NgModule({
@@ -22,7 +21,7 @@ import { AdminModule } from './admin/admin.module';
     SharedModule,
     ReactiveFormsModule,
     UserModule,
-    HttpClientModule
+    HttpClientModule,
     AdminModule
   ],
   providers: [

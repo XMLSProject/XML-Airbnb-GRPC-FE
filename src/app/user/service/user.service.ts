@@ -8,6 +8,9 @@ import { AllAccoInfo } from '../model/Accommodation';
 interface AccommodationData {
   allAcco: Array<AllAccoInfo>;
 }
+interface CheckData {
+  greeting: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -47,16 +50,24 @@ getToken(): any {
       
       if(data.allAcco.length != 0){
         data.allAcco.forEach((element) => {
-        this.http.post<string>(this.apiHost + 'checkDates', element ,{ headers : this.headers}).subscribe((data) => {
-            if(data == "There are reservations") dele = false;
+        this.http.post<CheckData>(this.apiHost + 'checkReservation', JSON.stringify(element.id) ,{ headers : this.headers}).subscribe((data) => {
+            console.log("usao u check reservation")
+            console.log("Data value: " + data.greeting)
+            if(data.greeting === "There are reservations") {
+              console.log("usao u gret")
+              dele = false;
+            }
+            console.log(dele + " dele value")
+            if(dele) {
+              this.http.post<any>(this.apiHost + 'delByCreator',"" , {headers : this.headers}).subscribe({
+              });
+              this.http.post<any>(this.apiHost + 'deleteUser',"" ,{headers : this.headers}).subscribe({
+              });
+            }
         });
       });
-      if(dele == true) {
-        this.http.post<any>(this.apiHost + 'delByCreator',"" , {headers : this.headers}).subscribe({
-        });
-        this.http.post<any>(this.apiHost + 'deleteUser',"" ,{headers : this.headers}).subscribe({
-        });
-      }
+      
+      
     }
     });
   }
