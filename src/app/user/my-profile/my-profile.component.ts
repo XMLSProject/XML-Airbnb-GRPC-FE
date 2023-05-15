@@ -78,6 +78,7 @@ export class MyProfileComponent {
       //this.redirectToLogin()
       window.location.reload();
   }
+  
 
   redirectToLogin(){
     this.router.navigate(['/app/login']);

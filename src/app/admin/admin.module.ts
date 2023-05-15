@@ -20,6 +20,7 @@ import { AddUpdatePriceComponent } from './add-update-price/add-update-price.com
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { BookingRequestsComponent } from './booking-requests/booking-requests.component'
 import { MatIconModule } from '@angular/material/icon';
+import { AcceptReservationComponent } from './accept-reservation/accept-reservation.component';
 
 const routes: Routes = [
     {
@@ -32,6 +33,10 @@ const routes: Routes = [
             {
               path: 'acommodationList',
               component: AcommodationListComponent,
+            },
+            {
+              path: 'acceptReservation',
+              component: AcceptReservationComponent,
             },
         ],
         data: {roles:['Admin']}
@@ -46,6 +51,7 @@ const routes: Routes = [
     AddUpdateFreeTerminComponent,
     AddUpdatePriceComponent,
     BookingRequestsComponent,
+    AcceptReservationComponent,
   ],
   imports: [
     BrowserModule,
