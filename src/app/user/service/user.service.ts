@@ -72,8 +72,8 @@ getToken(): any {
     });
   }
   else{
-    this.http.post<string>(this.apiHost + 'checkForGuests',"" ,{ headers : this.headers}).subscribe((data) => {
-      if(data == "There are reservations") dele = false;
+    this.http.post<CheckData>(this.apiHost + 'checkForGuests',"" ,{ headers : this.headers}).subscribe((data) => {
+      if(data.greeting == "There are reservations") dele = false;
       if(dele == true) {
         this.http.post<any>(this.apiHost + 'deleteUser',"" ,{headers : this.headers}).subscribe({
         });
