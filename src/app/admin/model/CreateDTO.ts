@@ -1,8 +1,8 @@
-export class Acommodation {
+export class CreateDTO {
     id : string = '';
     name: string = '';
     location: string = '';
-    photos: string[] = [];
+    photos: string = '';
     minGuests: number = 0;
     maxGuests: number = 0;
     benefits: string = ''; 
