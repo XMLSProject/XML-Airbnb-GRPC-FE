@@ -46,9 +46,7 @@ getToken(): any {
   }
 
   cancelRes(id : string) {
-    console.log(id)
-    this.http.post<any>(this.apiHost + 'deleteReservation', JSON.stringify(id), {headers: this.headers}).subscribe({
-    });
+    return this.http.post<any>(this.apiHost + 'deleteReservation', JSON.stringify(id), {headers: this.headers});
   }
 
   
