@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { User } from '../model/User';
 import jwt_decode from 'jwt-decode';
 import { AllAccoInfo } from '../model/Accommodation';
+import { switchMap, forkJoin } from 'rxjs';
+import { AllReservationInfo } from 'src/app/admin/model/AllReservationInfo';
 
 interface AccommodationData {
   allAcco: Array<AllAccoInfo>;
@@ -41,6 +43,22 @@ getToken(): any {
     console.log(updateUser)
     this.http.post<any>(this.apiHost + 'updateUser', updateUser, {headers: this.headers}).subscribe({
     });
+  }
+
+  cancelRes(id : string) {
+    console.log(id)
+    this.http.post<any>(this.apiHost + 'deleteReservation', JSON.stringify(id), {headers: this.headers}).subscribe({
+    });
+  }
+
+  
+  resListFunction(): Observable<AllReservationInfo[]> {
+    return this.http.get<AccommodationData>(this.apiHost + 'allAcco', { headers: this.headers }).pipe(
+      switchMap((data) => {
+        const observables = data.allAcco.map(element => this.http.post<AllReservationInfo>(this.apiHost + 'allReservations', JSON.stringify(element.id), { headers: this.headers }));
+        return forkJoin(observables);
+      })
+    );
   }
 
   deleteUser() : boolean {
