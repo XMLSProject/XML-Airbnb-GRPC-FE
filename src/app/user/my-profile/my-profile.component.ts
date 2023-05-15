@@ -13,12 +13,14 @@ import { UserService } from '../service/user.service';
 })
 export class MyProfileComponent {
 
+  Id?:string;
   Name?:string;
   Surname?:string;
   Email?:string;
   City?:string;
   Username?:string;
   Password?:string;
+  user?:User;
 
   constructor(private router: Router,private userService: UserService) {}
   
@@ -44,21 +46,27 @@ export class MyProfileComponent {
   });
   
   public ngOnInit() {
-    
-    //const user = this.userService.getLoggedData();
-    this.Name = "Name";
-    this.Surname = "Surname";
-    this.Email = "email@gmail.com";
-    this.Username = "Username";
-    this.Password = "Password";
-    this.City = "Novi Sad";
+    this.userService.getLoggedUser().subscribe(
+    data => {
+      this.Id = data.usr.id;
+      this.registerForm.get('name')?.setValue(data.usr.name);
+      this.registerForm.get('surname')?.setValue(data.usr.surname);
+      this.registerForm.get('username')?.setValue(data.usr.username);
+      this.registerForm.get('password')?.setValue(data.usr.password);
+      this.registerForm.get('email')?.setValue(data.usr.email);
+      this.City = "Novi Sad"
+    },
+    error => {
+      console.log(error);
+    }
+    );
   }
 
   public save(){
       const user:User = 
       {
       //id = this.userService.getLoggedDate().id
-      id : 2,
+      id : this.Id ? this.Id : "-1",
       name :"" + this.registerForm.get('name')?.value ,
       surname :"" + this.registerForm?.get('surname')?.value,
       username :"" + this.registerForm?.get('username')?.value,
@@ -68,6 +76,7 @@ export class MyProfileComponent {
       } 
       this.userService.updateUser(user)
       //this.redirectToLogin()
+      window.location.reload();
   }
 
   redirectToLogin(){
