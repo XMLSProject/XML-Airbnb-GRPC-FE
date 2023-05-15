@@ -1,15 +1,13 @@
-
 import { BookingRequestsComponent } from './../booking-requests/booking-requests.component';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUpdateFreeTerminComponent } from '../add-update-free-termin/add-update-free-termin.component';
 import { AddUpdatePriceComponent } from '../add-update-price/add-update-price.component';
 import { AcommodationService } from '../service/acommodation.service';
-import { Acommodation } from '../model/AcommodationModel';
-
+import { Acommodation } from '../../shared/model/Acommodation';
+import { MatSort, Sort } from '@angular/material/sort';
 
 
 @Component({
@@ -18,25 +16,40 @@ import { Acommodation } from '../model/AcommodationModel';
   styleUrls: ['./acommodation-list.component.css']
 })
 
-export class AcommodationListComponent implements OnInit, AfterViewInit {
-
-  displayedColumns: string[] = ['name', 'location', 'minGuests', 'maxGuests'];
-
-
-  public dataSource = new MatTableDataSource<Acommodation>();
-  public acommodation: Acommodation = new Acommodation; 
-  public acommodations: Acommodation[] = [];
+export class AcommodationListComponent implements OnInit, AfterViewInit  {
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private acommodationService: AcommodationService, public dialog: MatDialog) {}
 
-  ngOnInit(): void {
-    this.showAllAcommodations();
-  }
+  public displayedColumns: string[] = ['name', 'location', 'minGuests', 'maxGuests'];
+
+  public dataSource = new MatTableDataSource<Acommodation>();
+  public acommodations: Acommodation[] = [];
+
+  //public acommodation: Acommodation = { allAcco: [] };
   
+
   @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+  }
+
+  ngOnInit(): void {
+    this.showAllAcommodations();
+  }
+
+  public showAllAcommodations(): void {
+    this.acommodationService.getAllAcommodations().subscribe(
+      res => {
+        this.acommodations = res;
+        console.log(this.acommodations);
+        this.dataSource.data = this.acommodations;
+        console.log(this.dataSource.data);
+      },
+      error => {
+        console.log('Error:', error);
+      }
+    );
   }
 
   announceSortChange(sortState: Sort) { //za sortiranje
@@ -46,16 +59,7 @@ export class AcommodationListComponent implements OnInit, AfterViewInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-
-
-  public showAllAcommodations(): void{
-    this.acommodationService.getAllAcommodations().subscribe(res => {
-      this.acommodations = res;
-      this.dataSource.data = this.acommodations;
-      console.log(res);
-
-    })
-  }
+  
 
   public addUpdateTermin(selectedAcommodation: Acommodation): void {
     this.dialog.open(AddUpdateFreeTerminComponent, {

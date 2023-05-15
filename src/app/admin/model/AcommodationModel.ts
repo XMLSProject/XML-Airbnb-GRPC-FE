@@ -16,8 +16,8 @@ export class Acommodation {
             this.photos = obj.photos;
             this.minGuests = obj.minGuests;
             this.maxGuests = obj.maxGuests;
-            this.benefits = obj.benefits;    
-            this.acception = obj.acception;    
+            this.benefits = obj.benefits;
+            this.acception = obj.acception;
         }
     }
 

@@ -22,6 +22,7 @@ import { BookingRequestsComponent } from './booking-requests/booking-requests.co
 import { MatIconModule } from '@angular/material/icon';
 import { AcceptReservationComponent } from './accept-reservation/accept-reservation.component';
 
+
 const routes: Routes = [
     {
         path: 'admin', 
@@ -68,7 +69,6 @@ const routes: Routes = [
     MatDatepickerModule,
     MatSlideToggleModule,
     MatIconModule,
-    CdkTableModule,
     RouterModule.forChild(routes)
   ],
 })

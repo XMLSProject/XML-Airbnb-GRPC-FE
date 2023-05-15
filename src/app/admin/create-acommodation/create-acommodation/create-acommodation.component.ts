@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { Acommodation } from '../../model/AcommodationModel';
-import { AcommodationService } from '../../service/acommodation.service';
 import { CreateDTO } from '../../model/CreateDTO';
+import { AcommodationClassService } from '../../service/acommodation-class.service';
 
 @Component({
   selector: 'app-create-acommodation',
@@ -16,7 +15,7 @@ export class CreateAcommodationComponent {
 
   featureList: string[] = ['Klima', 'Parking', 'Wi-fi', 'Sef', 'Terasa', 'Pet-friendly', 'Zurke', 'Podno grejanje', 'Kada', 'Dozvoljeno pusenje'];
 
-  constructor(private acommodationService: AcommodationService) {}
+  constructor(private acommodationService: AcommodationClassService) {}
 
   public createNewAcommodation(createDTO: CreateDTO){
 

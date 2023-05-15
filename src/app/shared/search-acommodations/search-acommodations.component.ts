@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { Acommodation } from '../../admin/model/AcommodationModel';
+import { Acommodation } from '../model/Acommodation';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -17,7 +17,6 @@ export class SearchAcommodationsComponent implements AfterViewInit , OnInit {
 
 
   dataSource = new MatTableDataSource<Acommodation>();
-  acommodation: Acommodation = new Acommodation;
   acommodations: Acommodation[] = [];
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private acommodationService: AcommodationService) {}
@@ -46,7 +45,7 @@ export class SearchAcommodationsComponent implements AfterViewInit , OnInit {
 
   public showAllAcommodations(): void {
     this.acommodationService.getAllAcommodations().subscribe(res => {
-      this.acommodations = res;
+      //this.acommodations = res;
       this.dataSource.data = this.acommodations;
       console.log(this.acommodations);
       

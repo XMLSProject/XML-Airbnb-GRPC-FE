@@ -1,7 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Acommodation } from '../model/AcommodationModel';
+import { Observable, forkJoin, map, switchMap } from 'rxjs';
+import { Acommodation } from '../../shared/model/Acommodation';
+
+interface AcommodationResponse {
+  allAcco: Acommodation[];
+}
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +17,21 @@ export class AcommodationService {
 
   constructor(private http: HttpClient) { }
 
-  getAllAcommodations(): Observable<Acommodation[]> {
-    return this.http.get<Acommodation[]>(this.apiHost + 'allAcco' , {headers: this.headers});
+  // getAllAcommodations(): Observable<Acommodation[]> {
+  //   return this.http.get<Acommodation>(this.apiHost + 'allAcco', { headers: this.headers }).pipe(
+  //     switchMap((data) => {
+  //       const observables = data.allAcco.map(element => this.http.post<Acommodation>(this.apiHost + 'allByCreator', JSON.stringify(element.id), { headers: this.headers }));
+  //       return forkJoin(observables);
+  //     })
+  //   );
+  // }
+
+  public getAllAcommodations(): Observable<Acommodation[]> {
+    return this.http.get<AcommodationResponse>(this.apiHost + 'allAcco').pipe(
+      map(response => response.allAcco)
+    );
   }
   
-  createAcommodation(acommodation: Acommodation): Observable<Acommodation> {
-    return this.http.post<Acommodation>(this.apiHost + 'createAcco', acommodation, {headers: this.headers});
-  }
+
 
 }
