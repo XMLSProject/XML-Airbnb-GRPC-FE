@@ -3,25 +3,29 @@
     <div class="inputDiv">
         <mat-form-field class="example-full-width">
             <mat-label >By location  </mat-label>
-                <input type="text" id="locationInput" #locationInput required matInput  >
+                <input type="text" id="locationInput"  matInput [(ngModel)]="searchAcommodation.location" >
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label >By number of guests  </mat-label>
-                <input type="number" min="0" required matInput #numberOfGuestInput >
+                <input type="number" min="0"  matInput [(ngModel)]="searchAcommodation.maxGuests" >
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="example-full-width">
             <mat-label>Enter a date range</mat-label>
             <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date" #dateFromInput>
-            <input matEndDate placeholder="End date" #dateToInput>
+            <input matStartDate placeholder="Start date" [(ngModel)]="searchAcommodation.availableFrom">
+            <input matEndDate placeholder="End date" [(ngModel)]="searchAcommodation.availableTo">
             </mat-date-range-input>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
 
-        <button class="btn-search" [disabled]="locationInput.value === '' || numberOfGuestInput.value === '' " (click)="searchAcommodations(locationInput.value, numberOfGuestInput.value, dateFromInput.value, dateToInput.value)"><mat-icon><span class="material-symbols-outlined">
+        <button class="btn-reset" (click)="resetTable()" [disabled]="!isSearchClicked"><mat-icon><span class="material-symbols-outlined">
+            rotate_left
+        </span></mat-icon></button>
+
+        <button class="btn-search" [disabled]="searchAcommodation.location === '' || searchAcommodation.maxGuests === 0   || searchAcommodation.availableFrom === '' || searchAcommodation.availableTo === ''" (click)="searchAcommodations()"><mat-icon><span class="material-symbols-outlined">
             search_check
         </span></mat-icon></button>
 

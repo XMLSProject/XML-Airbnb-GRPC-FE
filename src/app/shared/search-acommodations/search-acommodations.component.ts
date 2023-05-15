@@ -15,9 +15,12 @@ export class SearchAcommodationsComponent implements AfterViewInit , OnInit {
   
   displayedColumns: string[] = ['name', 'location', 'minGuests', 'maxGuests']; 
 
+  isSearchClicked : boolean = false;
+  isResetClicked : boolean = false;
+
   dataSource = new MatTableDataSource<Acommodation>();
   acommodations: Acommodation[] = [];
-  //searchAcommodation: Acommodation = new Acommodation;
+  searchAcommodation: Acommodation = new Acommodation;
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private acommodationService: AcommodationService) {}
 
@@ -55,8 +58,25 @@ export class SearchAcommodationsComponent implements AfterViewInit , OnInit {
   }
 
 
-  public searchAcommodations(location: string, numberOfGuests: string, dateFrom: string, dateTo: string, ): void{
+  public searchAcommodations(): void{
+    console.log(this.searchAcommodation);
+    this.isSearchClicked = true;
+    this.isResetClicked = false;
+    this.acommodationService.searchAccommodations(this.searchAcommodation.location, this.searchAcommodation.availableFrom, this.searchAcommodation.availableTo, this.searchAcommodation.maxGuests).subscribe(res => {
+      this.acommodations = res;
+      this.dataSource.data = this.acommodations;
+      console.log(this.acommodations);
+    })
+  }
 
+  public resetTable(): void {
+    this.isResetClicked = true;
+    this.isSearchClicked = false;
+    this.searchAcommodation.location = '';
+    this.searchAcommodation.maxGuests = 0;
+    this.searchAcommodation.availableFrom = '';
+    this.searchAcommodation.availableTo = '';
+    this.showAllAcommodations();
   }
   
 }

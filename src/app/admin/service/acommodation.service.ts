@@ -32,7 +32,18 @@ export class AcommodationService {
     );
   }
 
-  
+  public searchAccommodations(location: string, dateFrom: string, dateTo: string, guestNumber: number) {
+    const requestBody = {
+      location: location,
+      dateFrom: dateFrom,
+      dateTo: dateTo,
+      guestNumber: guestNumber,
+    };
+
+    return this.http.post<any>(this.apiHost + "searchAcco", requestBody);
+  }
+
+
   
 
 
