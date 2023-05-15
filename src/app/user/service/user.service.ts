@@ -24,10 +24,9 @@ export class UserService {
   headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 constructor(private http: HttpClient) { }
 
-// getLoggedUser(): User {
-  
-//   return this.http.get<User[]>(this.apiHost + "my-tickets", { headers: this.headers})
-// }
+ getLoggedUser() :Observable<any> {
+  return this.http.get<any>(this.apiHost + "getUser", { headers: this.headers});
+ }
 
 getToken(): any {
   const token =  localStorage.getItem("token");
@@ -39,7 +38,8 @@ getToken(): any {
 }
 
   updateUser(updateUser : User) {
-    this.http.put<any>(this.apiHost + 'updateUser', updateUser, {headers: this.headers}).subscribe({
+    console.log(updateUser)
+    this.http.post<any>(this.apiHost + 'updateUser', updateUser, {headers: this.headers}).subscribe({
     });
   }
 
@@ -59,7 +59,8 @@ getToken(): any {
             }
             console.log(dele + " dele value")
             if(dele) {
-              this.http.post<any>(this.apiHost + 'delByCreator',"" , {headers : this.headers}).subscribe({
+              
+              this.http.post<any>(this.apiHost + 'delByCreator',JSON.stringify(this.getToken().username) , {headers : this.headers}).subscribe({
               });
               this.http.post<any>(this.apiHost + 'deleteUser',"" ,{headers : this.headers}).subscribe({
               });
