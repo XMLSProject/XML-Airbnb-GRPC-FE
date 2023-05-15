@@ -1,0 +1,23 @@
+<table class="reservation-table">
+    <thead>
+      <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Guest Number</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="reservationListTwo.length === 0">
+        <td colspan="4">No reservations found.</td>
+      </tr>
+      <tr *ngFor="let reservation of reservationListTwo" [attr.id]="'reservation-' + reservation.allAcco[0].id" class="reservation-row">
+        <td *ngIf="reservation.allAcco[0].id != undefined" class="reservation-date">{{ reservation.allAcco[0].fromDate.split(' ')[0] }}</td>
+        <td *ngIf="reservation.allAcco[0].id != undefined" class="reservation-date">{{ reservation.allAcco[0].toDate.split(' ')[0] }}</td>
+        <td *ngIf="reservation.allAcco[0].id != undefined" class="reservation-guest">{{ reservation.allAcco[0].guestNumber }}</td>
+        <td *ngIf="reservation.allAcco[0].id != undefined" class="reservation-action">
+          <button *ngIf="reservation.allAcco[0].id != undefined" [attr.id]="'accept-button-' + reservation.allAcco[0].id" class="accept-button" (click)="cancel(reservation.allAcco[0].id)" >Cancel</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
