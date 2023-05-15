@@ -28,10 +28,7 @@ import { ViewChild } from '@angular/core';
     ReactiveFormsModule,
     UserModule,
     HttpClientModule,
-    AdminModule,
-    MatInputModule,
-    MatTableModule,
-    MatSortModule,
+    AdminModule
   ],
   providers: [
      {
