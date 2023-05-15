@@ -34,7 +34,7 @@ export class CancelReservationComponent {
         this.reservationList.push(element)
       })
       this.reservationList.forEach(element=>{
-        if(element.allAcco[0] != undefined && element.allAcco[0].guestUsername == this.getToken().username)
+        if(element.allAcco[0] != undefined && element.allAcco[0].guestUsername == this.getToken().username && element.allAcco[0].accepted == "1")
         this.reservationListTwo.push(element)
       })
       console.log(this.reservationList)
