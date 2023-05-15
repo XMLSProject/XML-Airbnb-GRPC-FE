@@ -29,19 +29,21 @@ export class CancelReservationComponent {
 
   public reservationListFunction(){
     this.userService.resListFunction().subscribe((result) => {
-      console.log(result)
+      console.log(result.length)
       result.forEach(element=>{
         this.reservationList.push(element)
       })
       this.reservationList.forEach(element=>{
-        if(element.allAcco[0] != undefined && element.allAcco[0].guestUsername == this.getToken().username && element.allAcco[0].accepted == "1")
         this.reservationListTwo.push(element)
       })
-      console.log(this.reservationList)
     });
   }
+
   public cancel(id : string){
-    this.userService.cancelRes(id)
+    console.log(id)
+    this.userService.cancelRes(id).subscribe(el =>{
+      console.log(el)
+    })
   }
 
 }
