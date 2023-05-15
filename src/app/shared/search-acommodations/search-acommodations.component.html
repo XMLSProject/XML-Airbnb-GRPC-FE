@@ -1,31 +1,31 @@
 <div class="mainDiv">
      
-    <!-- <div class="inputDiv">
+    <div class="inputDiv">
         <mat-form-field class="example-full-width">
             <mat-label >By location  </mat-label>
-                <input type="text" id="locationInput" required matInput [(ngModel)]="acommodation.location" >
+                <input type="text" id="locationInput" #locationInput required matInput  >
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label >By number of guests  </mat-label>
-                <input type="number" min="0" required matInput [(ngModel)]="acommodation.maxGuests" >
+                <input type="number" min="0" required matInput #numberOfGuestInput >
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="example-full-width">
             <mat-label>Enter a date range</mat-label>
             <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date">
-            <input matEndDate placeholder="End date">
+            <input matStartDate placeholder="Start date" #dateFromInput>
+            <input matEndDate placeholder="End date" #dateToInput>
             </mat-date-range-input>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
 
-        <button class="btn-search" [disabled]="acommodation.location === '' || acommodation.maxGuests === 0 " (click)="searchAcommodations()"><mat-icon><span class="material-symbols-outlined">
+        <button class="btn-search" [disabled]="locationInput.value === '' || numberOfGuestInput.value === '' " (click)="searchAcommodations(locationInput.value, numberOfGuestInput.value, dateFromInput.value, dateToInput.value)"><mat-icon><span class="material-symbols-outlined">
             search_check
         </span></mat-icon></button>
 
-    </div> -->
+    </div>
 
 
     <div class="tableDiv">

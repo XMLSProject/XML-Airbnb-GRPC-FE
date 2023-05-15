@@ -15,9 +15,9 @@ export class SearchAcommodationsComponent implements AfterViewInit , OnInit {
   
   displayedColumns: string[] = ['name', 'location', 'minGuests', 'maxGuests']; 
 
-
   dataSource = new MatTableDataSource<Acommodation>();
   acommodations: Acommodation[] = [];
+  //searchAcommodation: Acommodation = new Acommodation;
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private acommodationService: AcommodationService) {}
 
@@ -39,17 +39,24 @@ export class SearchAcommodationsComponent implements AfterViewInit , OnInit {
     }
   }
 
-  public searchAcommodations(): void{
-
+  
+  public showAllAcommodations(): void {
+    this.acommodationService.getAllAcommodations().subscribe(
+        res => {
+        this.acommodations = res;
+        console.log(this.acommodations);
+        this.dataSource.data = this.acommodations;
+        console.log(this.dataSource.data);
+      },
+      error => {
+        console.log('Error:', error);
+      }
+    );
   }
 
-  public showAllAcommodations(): void {
-    this.acommodationService.getAllAcommodations().subscribe(res => {
-      //this.acommodations = res;
-      this.dataSource.data = this.acommodations;
-      console.log(this.acommodations);
-      
-    })
+
+  public searchAcommodations(location: string, numberOfGuests: string, dateFrom: string, dateTo: string, ): void{
+
   }
   
 }

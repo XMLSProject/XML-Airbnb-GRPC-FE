@@ -20,7 +20,7 @@ export class AcommodationListComponent implements OnInit, AfterViewInit  {
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private acommodationService: AcommodationService, public dialog: MatDialog) {}
 
-  public displayedColumns: string[] = ['name', 'location', 'minGuests', 'maxGuests'];
+  public displayedColumns: string[] = ['name', 'location', 'minGuests', 'maxGuests', 'price'];
 
   public dataSource = new MatTableDataSource<Acommodation>();
   public acommodations: Acommodation[] = [];
